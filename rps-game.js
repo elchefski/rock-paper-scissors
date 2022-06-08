@@ -35,24 +35,72 @@ function validatePlayerPlay(playerSelection){
             return playerSelection;
             
         default:
-            console.log("Invalid Choice");
+            //console.log("Invalid Choice");
             let badChoice = "invalid"
             return badChoice
             
     }
 }
 
-function playRound (playerSelection, computerSelection){
-    if(playerSelection === computerSelection){
-        console.log("It's a tie");
+function updateScore(player){
+    if(player === "cpu"){
+        cpuScore += 1;
+        return;
     }
-    console.log(playerSelection + " " + computerSelection);
+
+    if(player === "player"){
+        playerScore += 1;
+    }
+}
+
+function playRound (playerSelection, computerSelection){
+    let winner = ""
+    if(playerSelection === computerSelection){
+        
+        console.log("It's a tie");        
+        return;
+
+    }else if(playerSelection === "rock"){
+        
+        if(computerSelection === "paper"){
+            //cpu wins
+            winner = "cpu"
+            
+        }else if(computerSelection === "scissors"){
+            //player wins
+            winner = "player"
+        }
+
+    }else if(playerSelection === "paper"){
+        
+        if(computerSelection === "scissors"){
+            //cpu wins
+            winner = "cpu"
+        }else if(computerSelection === "rock"){
+            //player wins
+            winner = "player"
+        }
+
+    }else if(playerSelection === "scissors"){
+        
+        if(computerSelection === "rock"){
+            //cpu wins
+            winner = "cpu"
+        }else if(computerSelection === "paper"){
+            //player wins
+            winner = "player"
+        }
+    }    
+    console.log(winner)
+    //return winner;
 }
 
 //console.log (computerPlay())
  
 const computerSelection = computerPlay();
 const playerSelection = playerPlay();
+var cpuScore = 0;
+var playerScore = 0;
 
 //alert (`${playerSelection}`);
 
